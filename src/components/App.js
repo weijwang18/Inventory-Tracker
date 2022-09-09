@@ -1,14 +1,16 @@
-
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
 import SoupControl from './SoupControl';
 import Header from './Header';
-import SoupControl from './SoupControl';
+
 
 function App() {
   return (
     <React.Fragment>
+      <Container>
         <Header />
         <SoupControl />
+      </Container>
     </React.Fragment>
   );
 }
