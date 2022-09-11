@@ -9,8 +9,8 @@ function App() {
     <React.Fragment>
         <Header />
         <Container>
-        <SoupControl />
-      </Container>
+          <SoupControl />
+        </Container>
     </React.Fragment>
   );
 }

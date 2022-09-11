@@ -1,13 +1,30 @@
 import React from "react";
-import Soup from "./Soup";
+import NewSoupForm from "./NewSoupForm";
+import SoupList from "./SoupList";
 
-function SoupControl(){
-  return (
-    <React.Fragment>
-        <Soup />
+class SoupControl extends React.Component {
 
-    </React.Fragment>
-  );
+  constructor(props) {
+    super(props);
+    this.state = {
+      formVisibleOnpage: false
+    };
+  }
+
+  render(){
+    let currentlyVisibleState = null;
+    if (this.state.formVisibleOnpage){
+      currentlyVisibleState = <NewSoupForm />
+    } else { 
+      currentlyVisibleState = <SoupControl />
+    }
+    return (
+      <React.Fragment>
+        {currentlyVisibleState}
+      </React.Fragment>
+    );
+  }
+
 }
 
 export default SoupControl;
