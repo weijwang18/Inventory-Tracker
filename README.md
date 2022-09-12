@@ -2,7 +2,7 @@
 
 #### By _Winnie Wang_
 
-#### _A inventory tracker_
+#### _A simple inventory tracker_
 
 ## Technologies Used
 
@@ -13,7 +13,12 @@
 
 ## Description
 
-A simple inventory tracker.
+It allows users to add and keep track of inventory at a soup kitchen. 
+
+## Component Diagram
+
+![diagram](diagram.png)
+
 
 ## Setup/Installation Requirements
 _Requires console application such as Git Bash, Terminal, or PowerShell_
@@ -33,7 +38,7 @@ _Requires console application such as Git Bash, Terminal, or PowerShell_
 
 5. Run the following command in the console
 
-    ``npm start``
+    ``npm run start``
 
 ## Known Bugs
 
