@@ -11,16 +11,26 @@ class SoupControl extends React.Component {
     };
   }
 
+  handleClick = () => {
+    this.setState(prevState => ({
+      formVisibleOnPage: !prevState.formVisibleOnPage
+    }));
+  }
+
   render(){
     let currentlyVisibleState = null;
+    let buttonText = null;
     if (this.state.formVisibleOnpage){
-      currentlyVisibleState = <NewSoupForm />
+      currentlyVisibleState = <NewSoupForm />;
+      buttonText = "Return to Soup List";
     } else { 
-      currentlyVisibleState = <SoupControl />
+      currentlyVisibleState = <SoupList />
+      buttonText = "Add Soup Order"
     }
     return (
       <React.Fragment>
         {currentlyVisibleState}
+        <button onClick = {this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }
