@@ -1,6 +1,7 @@
 import React from "react";
 import NewSoupForm from "./NewSoupForm";
 import SoupList from "./SoupList";
+import SoupDetail from './SoupDetail';
 
 class SoupControl extends React.Component {
 
@@ -8,14 +9,27 @@ class SoupControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnpage: false,
-      mainSoupList: []
+      mainSoupList: [],
+      selectedSoup: null
     };
   }
 
   handleClick = () => {
-    this.setState(prevState => ({
-      formVisibleOnPage: !prevState.formVisibleOnPage
-    }));
+    if (this.state.selectedSoup != null) {
+      this.setState({
+        formVisibleOnPage: false,
+        selectedSoup: null
+      });
+    } else {
+      this.setState(prevState => ({
+        formVisibleOnPage: !prevState.formVisibleOnPage,
+      }));
+    }
+  }
+
+  handleChangingSelectedSoup = (id) => {
+    const selectedSoup = this.state.mainSoupList.filter(soup => soup.id === id)[0];
+    this.setState({selectedSoup: selectedSoup});
   }
 
   handleAddingNewSoupToList = (newSoup) => {
@@ -27,12 +41,16 @@ class SoupControl extends React.Component {
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.formVisibleOnPage){
+
+    if (this.state.selectedSoup != null) {
+      currentlyVisibleState = <SoupDetail soup = {this.state.selectedSoup} />
+      buttonText = "Return to Soup List";}
+    else if (this.state.formVisibleOnPage){
       currentlyVisibleState = <NewSoupForm onNewSoupCreation={this.handleAddingNewSoupToList}/>;
       buttonText = "Return to Soup List";
     } else { 
-      currentlyVisibleState = <SoupList soupList = {this.state.mainSoupList} />;
-      buttonText = "Add Soup Order";
+      currentlyVisibleState = <SoupList soupList = {this.state.mainSoupList} onSoupSelection={this.handleChangingSelectedSoup} />;
+      buttonText = "Add Soup";
     }
     return (
       <React.Fragment>
