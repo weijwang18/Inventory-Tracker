@@ -7,7 +7,8 @@ class SoupControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnpage: false
+      formVisibleOnpage: false,
+      mainSoupList: []
     };
   }
 
@@ -17,15 +18,21 @@ class SoupControl extends React.Component {
     }));
   }
 
+  handleAddingNewSoupToList = (newSoup) => {
+    const newMainSoupList = this.state.mainSoupList.concat(newSoup);
+    this.setState({mainSoupList: newMainSoupList,
+                  formVisibleOnPage: false });
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.formVisibleOnpage){
-      currentlyVisibleState = <NewSoupForm />;
+    if (this.state.formVisibleOnPage){
+      currentlyVisibleState = <NewSoupForm onNewSoupCreation={this.handleAddingNewSoupToList}/>;
       buttonText = "Return to Soup List";
     } else { 
-      currentlyVisibleState = <SoupList />
-      buttonText = "Add Soup Order"
+      currentlyVisibleState = <SoupList soupList = {this.state.mainSoupList} />;
+      buttonText = "Add Soup Order";
     }
     return (
       <React.Fragment>

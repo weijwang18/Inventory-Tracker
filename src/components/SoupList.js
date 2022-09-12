@@ -15,7 +15,7 @@ function SoupList(props){
   );
 }
 
-SoupList.prototypes = {
+SoupList.propTypes = {
   soupList: PropTypes.array
 }
 
